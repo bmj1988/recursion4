@@ -33,11 +33,21 @@ let y = x.slice();
 console.log(x[0] === y[0]) // true
 ***********************************************************************/
 
-
 function deepDup(arr) {
-  const duped = []
-  arr.map(el => duped.push(structuredClone(el)))
-  return duped
+  //   const duped = []
+  //   arr.map(el => duped.push(structuredClone(el)))
+  //   return duped
+  // }
+
+  if (arr.length === 0) {
+    return [];
+  }
+  // if arr[0] is an array then call deepDup on it within the [] and deepDup for rest
+  if (Array.isArray(arr[0])) {
+    return [[...deepDup(arr[0])], ...deepDup(arr.slice(1))];
+  }
+  // else return element and call deepDup for rest
+  return [arr[0], ...deepDup(arr.slice(1))];
 }
 
 /*let duped = JSON.parse(JSON.stringify(arr))
