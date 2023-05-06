@@ -35,10 +35,14 @@ console.log(x[0] === y[0]) // true
 
 
 function deepDup(arr) {
-  // Your code here
+  const duped = []
+  arr.map(el => duped.push(structuredClone(el)))
+  return duped
 }
 
-
+/*let duped = JSON.parse(JSON.stringify(arr))
+return duped
+} */
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {
   module.exports = deepDup;

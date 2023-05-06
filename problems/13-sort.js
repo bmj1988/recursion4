@@ -22,8 +22,12 @@ sort([]); // []
 ***********************************************************************/
 
 function sort(nums, sorted = []) {
-    // Your code here
+    if (nums.length === 0) return []
+    min = nums.reduce((acc, el) => Math.min(acc,el), Infinity)
+    i = nums.indexOf(min)
+    sorted = [min]
+    nums.splice(i, 1)
+    return sorted.concat(sort(nums, sorted))
 }
-
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 module.exports = sort;
