@@ -66,8 +66,54 @@ The call above should return the tree below:
 ***********************************************************************/
 
 const makeTree = (categories, parent) => {
-  // Your code here
-};
+    const node = {};
+    const matchingCategories = categories.filter((category) => {
+        return category.parent === parent;
+    });
+
+    matchingCategories.forEach((category) => {
+        node[category.id] = makesTree(categories, category.id);
+    });
+    return node;
+}
+
+
+
+    /*
+    if (categories.length === 0) return {}
+    for (let i = 0; i < categories.length; i++) {
+        const obj = categories[i]; // obj in categories[i]
+        const objID = obj['id']
+        let parentObj = {}
+        if (obj.parent === null) { // any object with a Null parent an empty array at the base of the tree
+            parentObj[objID] = makeTree(categories.slice(1), parentObj)  // parentObj now = { animal: {recursing}}
+            return parentObj
+        }
+        for (key in obj) { // checks every key in obj at categories[i]
+            if (key=== 'parent' && parent[obj[key]]) { // alternatively, Object.keys(parent).includes(obj[key]), checks to see if the current key === parent, and its value === key in parent {}
+                parentObj[objID] = makeTree(categories.slice(1), parentObj) // parent[obj[key]] += {obj['id']:{}} // adds object {current object ID : {}}
+
+            }
+        }
+        return parentObj
+    }
+};*/
+/*const categories2 = [
+    parent: {Animals :}
+        {Mammals: }
+         { cats : }
+        {persian : }
+
+
+    { id: 'animals', 'parent': null },
+    { id: 'mammals', 'parent': 'animals' },
+    { id: 'cats', 'parent': 'mammals' },
+    { id: 'dogs', 'parent': 'mammals' },
+    { id: 'chihuahua', 'parent': 'dogs' },
+    { id: 'labrador', 'parent': 'dogs' },
+    { id: 'persian', 'parent': 'cats' },
+    { id: 'siamese', 'parent': 'cats' }
+];*/
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 module.exports = makeTree;
